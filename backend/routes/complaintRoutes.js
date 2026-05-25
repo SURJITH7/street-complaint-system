@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const protect = require('../middleware/authMiddleware');
+
 const {
     createComplaint,
     getComplaints,
@@ -12,11 +14,11 @@ const {
 
 
 // CREATE COMPLAINT
-router.post('/', createComplaint);
+router.post('/create', protect, createComplaint);
 
 
 // GET ALL COMPLAINTS
-router.get('/', getComplaints);
+router.get('/', protect, getComplaints);
 
 router.get('/:id', getComplaintById);
 
