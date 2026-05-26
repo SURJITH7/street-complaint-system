@@ -4,6 +4,8 @@ const router = express.Router();
 
 const protect = require('../middleware/authMiddleware');
 
+const adminOnly = require('../middleware/adminMiddleware');
+
 const {
     createComplaint,
     getComplaints,
@@ -24,7 +26,7 @@ router.get('/:id', getComplaintById);
 
 router.put('/:id', updateComplaintStatus);
 
-router.delete('/:id', deleteComplaint);
+router.delete('/:id', protect, adminOnly, deleteComplaint);
 
 
 module.exports = router;
